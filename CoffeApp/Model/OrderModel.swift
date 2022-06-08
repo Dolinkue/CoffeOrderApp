@@ -11,7 +11,7 @@ import Foundation
 struct OrderModel: Codable {
     
     let name: String
-    let coffeName: String
+    let coffeeName: String
     let size: String
     let total: Double
     

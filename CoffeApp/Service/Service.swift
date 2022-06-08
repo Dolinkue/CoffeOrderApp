@@ -22,17 +22,19 @@ struct Service {
             do {
                 
                 let order = try JSONDecoder().decode([OrderModel].self, from: data)
+                
                 DispatchQueue.main.async {
                     
-                    
+                    print(order)
                     completion(order)
+                    
                     
                 }
                 
                 
             } catch {
                 
-                let error = error.localizedDescription
+                let error = error
                 print(error)
                 
                 
