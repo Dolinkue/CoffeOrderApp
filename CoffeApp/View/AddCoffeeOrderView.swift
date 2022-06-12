@@ -11,6 +11,7 @@ struct AddCoffeeOrderView: View {
     
     
     @ObservedObject private var addCoffeeOrderVM = AddCoffeeViewModel()
+    @Binding var isPresented: Bool
     
     var body: some View {
         
@@ -47,9 +48,18 @@ struct AddCoffeeOrderView: View {
                                 Text("Large").tag("Large")
                             }.pickerStyle(SegmentedPickerStyle())
                         }
+                    Section {
+                        OrderTotalView(total: self.addCoffeeOrderVM.total)
+                    } header: {
+                        Text("Total").font(.body)
+                    }
+
+                    
                 }
                 
                 Button("Place Order") {
+                    self.addCoffeeOrderVM.placeOrder()
+                    self.isPresented = false
                     
                 }.padding(EdgeInsets(top: 12, leading: 100, bottom: 12, trailing: 100))
                     .foregroundColor(Color.white)
@@ -64,7 +74,7 @@ struct AddCoffeeOrderView: View {
 
 struct AddCoffeeOrderView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCoffeeOrderView()
+        AddCoffeeOrderView(isPresented: .constant(false))
     }
 }
 
